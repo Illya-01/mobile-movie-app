@@ -52,8 +52,10 @@ const _Layout = () => {
           paddingHorizontal: 12,
           marginBottom: 36,
           height: 48,
-          position: "sticky",
+          position: "absolute",
           overflow: "hidden",
+          borderWidth: 1,
+          borderColor: "#0F0D23",
         },
       }}
     >
