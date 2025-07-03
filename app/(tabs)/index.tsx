@@ -24,19 +24,19 @@ export default function Index() {
     <View className="flex-1 bg-primary">
       <Image source={images.bg} className="absolute w-full z-0" />
       <ScrollView
-        className="flex-1 px-5 mt-14"
+        className="flex-1 px-5 pt-14"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           minHeight: "100%",
           paddingBottom: 10,
         }}
       >
-        <Image source={icons.logo} className="w-12 h-10 mt-4 mb-5 mx-auto" />
+        <Image source={icons.logo} className="w-12 h-10 mt-4 mb-2 mx-auto" />
 
         {isLoadingMovies && <LoadingScreen />}
         {moviesError && <ErrorScreen error={moviesError} />}
         {!isLoadingMovies && !moviesError && (
-          <View className="flex-1 mt-5">
+          <View className="flex-1 mt-4">
             <Searchbar onPress={() => router.push("/search")} />
             <Text className="text-lg font-bold text-white mt-5 mb-3">
               Latest Movies

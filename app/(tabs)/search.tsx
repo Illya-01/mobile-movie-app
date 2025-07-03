@@ -41,11 +41,10 @@ const Search = () => {
         className="absolute w-full z-0"
         resizeMode="cover"
       />
-      <ScrollView className="mt-14">
+      <ScrollView className="pt-14">
         <View className="mx-5">
-          <Image source={icons.logo} className="w-12 h-10 mt-4 mb-10 mx-auto" />
-
-          <View className="mb-5">
+          <Image source={icons.logo} className="w-12 h-10 mt-4 mb-2 mx-auto" />
+          <View className="mt-4 mb-5">
             <Searchbar
               value={searchQuery}
               onChangeText={(text: string) => setSearchQuery(text)}
@@ -65,6 +64,7 @@ const Search = () => {
               </Text>
             )}
           <FlatList
+            className="pb-32"
             data={movies}
             renderItem={({ item }) => (
               <MovieCard {...item} all_genres={all_genres} />
@@ -77,9 +77,6 @@ const Search = () => {
               marginBottom: 24,
             }}
             scrollEnabled={false}
-            contentContainerStyle={{
-              marginBottom: 100,
-            }}
             ListEmptyComponent={
               !isLoadingMovies && !moviesError ? (
                 <View className="mt-5">
