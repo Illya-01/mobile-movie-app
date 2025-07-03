@@ -7,7 +7,6 @@ import useFetch from "@/hooks/useFetch";
 import { fetchGenres, fetchMovies } from "@/services/api";
 import { useRouter } from "expo-router";
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Searchbar from "../../components/Searchbar";
 import "../global.css";
 
@@ -22,10 +21,10 @@ export default function Index() {
   const { data: all_genres } = useFetch(() => fetchGenres({ language: "en" }));
 
   return (
-    <SafeAreaView className="flex-1 bg-primary">
+    <View className="flex-1 bg-primary">
       <Image source={images.bg} className="absolute w-full z-0" />
       <ScrollView
-        className="flex-1 px-5"
+        className="flex-1 px-5 mt-14"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           minHeight: "100%",
@@ -60,6 +59,6 @@ export default function Index() {
           </View>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
