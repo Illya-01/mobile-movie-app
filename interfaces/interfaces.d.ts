@@ -75,3 +75,8 @@ interface TrendingCardProps {
   movie: TrendingMovie;
   index: number;
 }
+
+interface Genre {
+  id: number;
+  name: string;
+}
