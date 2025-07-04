@@ -4,7 +4,7 @@ import MaskedView from "@react-native-masked-view/masked-view";
 import { Link } from "expo-router";
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import TrandingRating from "./TrandingRating";
+import TrandingRating from "./Rating";
 
 interface trendingMovieCardProps {
   movie: TrendingMovie;
@@ -47,7 +47,9 @@ const trendingMovieCard = ({
                 />
               </MaskedView>
             </View>
-            <TrandingRating rating={vote_average / 2} />
+            <View className="absolute top-1.5 -right-3.5 bg-white/30 rounded-md p-1">
+              <TrandingRating rating={vote_average / 2} size="sm" />
+            </View>
             <Text
               numberOfLines={1}
               className="text-white font-bold text-sm mt-2"

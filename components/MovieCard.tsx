@@ -1,9 +1,9 @@
 import { TMDB_CONFIG } from "@/config";
-import { icons } from "@/constants/icons";
 import { getGenreNames } from "@/utils";
 import { Link } from "expo-router";
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
+import TrandingRating from "./Rating";
 
 interface MovieCardProps extends Movie {
   all_genres?: Genre[];
@@ -42,11 +42,8 @@ const MovieCard = ({
             >
               {title}
             </Text>
-            <View className="flex-row justify-start items-center gap-x-1">
-              <Image className="size-4" source={icons.star} />
-              <Text className="text-white font-bold text-xs">
-                {(vote_average / 2).toFixed(1)}
-              </Text>
+            <View className="items-start">
+              <TrandingRating rating={vote_average / 2} size="md" />
             </View>
             <View className="flex-row justify-between items-center">
               {movieGenres.length > 0 && (
