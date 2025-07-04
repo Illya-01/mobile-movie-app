@@ -59,6 +59,6 @@ export const formatBigNums = (amount: number) => {
       : `${thousands.toFixed(1)}K`;
   } else {
     // Less than a thousand, show as is
-    return `$${amount.toLocaleString()}`;
+    return `${amount.toLocaleString()}`;
   }
 };
