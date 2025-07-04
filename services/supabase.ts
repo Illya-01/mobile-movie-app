@@ -21,12 +21,9 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
       return;
     }
 
-    console.log("Existing searches:", existingSearches);
-
     if (existingSearches && existingSearches.length > 0) {
       // Update existing record
       const existingMovie = existingSearches[0];
-      console.log("Updating existing movie:", existingMovie);
 
       const { error: updateError } = await supabase
         .from("metrics")
@@ -35,31 +32,44 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
 
       if (updateError) {
         console.error("Error updating search count:", updateError);
-      } else {
-        console.log(
-          "Successfully updated search count to:",
-          existingMovie.count + 1
-        );
       }
     } else {
       // Insert new record
-      console.log("Inserting new search record for:", query, movie.title);
-
       const { error: insertError } = await supabase.from("metrics").insert({
         search_term: query,
         count: 1,
         movie_id: movie.id,
-        movie_title: movie.title,
+        title: movie.title,
         poster_url: `${TMDB_CONFIG.IMAGE_BASE_URL}${movie.poster_path}`,
+        genre_ids: movie.genre_ids,
+        vote_average: movie.vote_average,
       });
 
       if (insertError) {
         console.error("Error inserting new search record:", insertError);
-      } else {
-        console.log("Successfully inserted new search record");
       }
     }
   } catch (error) {
     console.error("Error getting or updating search count:", error);
+  }
+};
+
+export const fetchTrendingMovies = async () => {
+  try {
+    const { data: trendingMovies, error: selectError } = await supabase
+      .from("metrics")
+      .select("*")
+      .limit(5)
+      .order("count", { ascending: false });
+
+    if (selectError) {
+      console.error("Error selecting existing searches:", selectError);
+      return;
+    }
+
+    return trendingMovies as TrendingMovie[];
+  } catch (error) {
+    console.error("Error fetching trending searches:", error);
+    return;
   }
 };
