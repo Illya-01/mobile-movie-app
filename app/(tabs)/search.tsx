@@ -53,7 +53,7 @@ const Search = () => {
         className="absolute w-full z-0"
         resizeMode="cover"
       />
-      <ScrollView className="pt-14">
+      <ScrollView className="pt-14" showsVerticalScrollIndicator={false}>
         <View className="mx-5">
           <Image source={icons.logo} className="w-12 h-10 mt-4 mb-2 mx-auto" />
           <View className="mt-4 mb-5">
