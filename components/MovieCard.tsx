@@ -1,5 +1,5 @@
+import { TMDB_CONFIG } from "@/config";
 import { icons } from "@/constants/icons";
-import { TMDB_CONFIG } from "@/services/api";
 import { getGenreNames } from "@/utils";
 import { Link } from "expo-router";
 import React from "react";
