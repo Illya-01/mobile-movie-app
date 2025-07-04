@@ -4,6 +4,7 @@ import MaskedView from "@react-native-masked-view/masked-view";
 import { Link } from "expo-router";
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
+import TrandingRating from "./TrandingRating";
 
 interface trendingMovieCardProps {
   movie: TrendingMovie;
@@ -12,14 +13,14 @@ interface trendingMovieCardProps {
 }
 
 const trendingMovieCard = ({
-  movie: { id, movie_id, count, title, poster_url, vote_average, genre_ids },
+  movie: { movie_id, title, poster_url, vote_average, genre_ids },
   index,
   all_genres = [],
 }: trendingMovieCardProps) => {
   const trendingMovieGenres = getGenreNames(genre_ids, all_genres);
 
   return (
-    <Link href={`movies/${id}`} asChild>
+    <Link href={`movies/${movie_id}`} asChild>
       <Pressable onPress={() => {}} className="w-32 relative pl-5">
         {({ pressed }) => (
           <>
@@ -46,6 +47,7 @@ const trendingMovieCard = ({
                 />
               </MaskedView>
             </View>
+            <TrandingRating rating={vote_average / 2} />
             <Text
               numberOfLines={1}
               className="text-white font-bold text-sm mt-2"
