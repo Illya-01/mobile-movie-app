@@ -6,11 +6,13 @@ import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import useFetch from "@/hooks/useFetch";
 import { fetchGenres, fetchMovies } from "@/services/api";
+import { updateSearchCount } from "@/services/supabase";
 import React, { useEffect, useState } from "react";
 import { FlatList, Image, ScrollView, Text, View } from "react-native";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const DELAY_TIME = 500;
 
   const {
     data: movies,
@@ -29,10 +31,20 @@ const Search = () => {
       } else {
         reset();
       }
-    }, 500);
+    }, DELAY_TIME);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
+
+  useEffect(() => {
+    if (searchQuery.trim() && movies && movies.length > 0) {
+      const timeoutId = setTimeout(() => {
+        updateSearchCount(searchQuery, movies[0]);
+      }, DELAY_TIME);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [movies]);
 
   return (
     <View className="flex-1 bg-primary">
